@@ -44,15 +44,6 @@ export default function App() {
       setIsLoading(false)
       }
     }
-    useEffect(() => {
-      if (!isLoading) {
-        if (state.isLogin === false) {
-          // navigate("/"); 
-        } else if (state.user.role == "admin") {
-          navigate("/transactions");
-        }
-      }
-    }, [isLoading])
     
     useEffect(() =>{
       if (localStorage.token) {
@@ -63,6 +54,13 @@ export default function App() {
       }
     }, []);
 
+    useEffect(() => {
+      if (!isLoading) {
+        if (state.isLogin === false) {
+          // navigate("/"); 
+        }
+      }
+    }, [isLoading])
 
     //filter
     const [search, setSearch] = useState("")
@@ -105,6 +103,6 @@ export default function App() {
           <Route path='/addProperty' element={<AddProperties /> } />
         </Route>
       </Routes>
-    </> 
+    </>
   );
 }
