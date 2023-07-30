@@ -58,6 +58,8 @@ export default function App() {
       if (!isLoading) {
         if (state.isLogin === false) {
           // navigate("/"); 
+        } else if (state.user.role == "admin") {
+          navigate("/transactions");
         }
       }
     }, [isLoading])
@@ -103,6 +105,6 @@ export default function App() {
           <Route path='/addProperty' element={<AddProperties /> } />
         </Route>
       </Routes>
-    </>
+    </> 
   );
 }

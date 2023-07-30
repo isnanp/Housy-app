@@ -5,18 +5,17 @@ import { useContext } from "react";
 export const PrivateRoute = () => {
     const [state] = useContext(UserContext)
     
-    if (state.user.role !== "tenant") {
-        return <Navigate to="/" />
+    if (state.user.role === "tenant") {
+        return <Outlet />
     }
-
-    return <Outlet />
+    return <Navigate to="/" />
 }
 
 export function PrivateRouteOwner() {
     const [state] = useContext(UserContext);
 
-    if (state.user.role !== "owner") {
-        return <Navigate to="/" />
+    if (state.user.role === "owner") {
+        return <Outlet />
     }
-    return <Outlet />
+    return <Navigate to="/" />
 }
