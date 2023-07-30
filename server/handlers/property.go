@@ -1,17 +1,13 @@
 package handlers
 
 import (
-	"context"
 	"fmt"
 	dto "housy/dto/result"
 	"housy/models"
 	"housy/repositories"
 	"net/http"
-	"os"
 	"strconv"
 
-	"github.com/cloudinary/cloudinary-go/v2"
-	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/go-playground/validator/v10"
 	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
@@ -30,17 +26,6 @@ func (h *PropertiesHandlers) CreateProperties(c echo.Context) error {
 	dataFile := c.Get("dataFile").(string)
 	fmt.Println("ini data file", dataFile)
 
-	var ctx = context.Background()
-	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
-	var API_KEY = os.Getenv("API_KEY")
-	var API_SECRET = os.Getenv("API_SECRET")
-
-	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
-	resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "housy"})
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	userLogin := c.Get("userLogin")
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 
@@ -58,12 +43,12 @@ func (h *PropertiesHandlers) CreateProperties(c echo.Context) error {
 		Amenity:     datatypes.JSON(c.FormValue("amenity")),
 		Bedrooms:    bedroom,
 		Bathrooms:   bathroom,
-		Images:      resp.SecureURL,
+		Images:      dataFile,
 		Description: c.FormValue("description"),
 	}
 
 	validation := validator.New()
-	err = validation.Struct(request)
+	err := validation.Struct(request)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: "Failed", Message: "Validator error"})
 	}

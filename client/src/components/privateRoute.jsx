@@ -9,7 +9,7 @@ export const PrivateRoute = () => {
         return <Navigate to="/" />
     }
 
-    return state.isLogin ? <Outlet /> : <Navigate to="/" />
+    return <Outlet />
 }
 
 export function PrivateRouteOwner() {

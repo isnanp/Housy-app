@@ -14,11 +14,11 @@ import {useContext, useState} from "react";
 import Login from "./modal/Login";
 import {UserContext} from "../context/usercontext";
 import { Link, useNavigate } from "react-router-dom";
-import IconUserDD from "../assets/iconUserDD.png"
-import IconBookingDD from "../assets/iconBookingDD.png"
-import IconHistoryDD from "../assets/iconHistoryDD.png"
-import IconLogoutDD from "../assets/iconLogoutDD.png"
-import IconPropertyDD from "../assets/iconPropertyDD.png"
+import IconUserDD from "../assets/IconUserDD.png"
+import IconBookingDD from "../assets/IconBookingDD.png"
+import IconHistoryDD from "../assets/IconHistoryDD.png"
+import IconLogoutDD from "../assets/IconLogoutDD.png"
+import IconPropertyDD from "../assets/IconPropertyDD.png"
 
 
 export default function NavbarCustom(props) {
