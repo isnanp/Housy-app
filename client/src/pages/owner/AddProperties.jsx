@@ -185,7 +185,7 @@ export default function AddProperties() {
                     onChange={handleChange}/>
             </FloatingLabel>
             
-            
+            <Form.Label>Bathroom</Form.Label>
             <Form.Select className="mb-3"
             aria-label="Default select example"
             name="Bedroom"
