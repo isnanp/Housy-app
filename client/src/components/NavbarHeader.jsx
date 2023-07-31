@@ -125,7 +125,7 @@ export default function NavbarCustom(props) {
                         </>
                             )
                             : (
-                                <> < Form onSubmit={() => props.refetch()}> 
+                                <> < Form onSubmit={(e) => {e.preventDefault(); props.refetch()}}> 
                                 <InputGroup className="mb-3">
                                     <Form.Control
                                     onChange={handleChange}
