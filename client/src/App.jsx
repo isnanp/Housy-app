@@ -18,7 +18,7 @@ import { PrivateRouteOwner } from './components/privateRoute'
 
 export default function App() {
   const [state, dispatch] = useContext(UserContext)
-  const [isLoading, setIsLoading] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
 
 
@@ -45,22 +45,20 @@ export default function App() {
       }
     }
     
-    useEffect(() =>{
-      if (localStorage.token) {
-        setAuthToken(localStorage.token);
-        checkUser();
-      } else {
-        setIsLoading(false);
-      }
-    }, []);
-
     useEffect(() => {
-      if (!isLoading) {
-        if (state.isLogin === false) {
-          // navigate("/"); 
-        }
-      }
-    }, [isLoading])
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+      checkUser();
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && !state.isLogin) {
+      navigate("/");
+    }
+  }, [isLoading]);
 
     //filter
     const [search, setSearch] = useState("")
@@ -90,19 +88,23 @@ export default function App() {
 
   return (
     <>
-      <NavbarCustom search={search} refetch={PropertiesRefecth} setSearch={setSearch} />
-      <Routes>
-        <Route path='/' element={<HomeTenant Price={Price} Bedroom={Bedroom} Bathroom={Bathroom} setSearch={setSearch} data={Properties} refetch={PropertiesRefecth} type={Type} setBtnType={setBtnType} setBedroom={setBedroom} setBathroom={setBathroom} setPrice={setPrice} />} />
-        <Route path='/details/:id' element={<BookingDetailPage /> } />
-        <Route path='/property-detail/:id' element={<PropertyDetail /> } />
-        <Route path='/profile' element={<ProfilePage /> } />
-        <Route path='/bookinglist' element={<Bookinglist /> } />   
-        <Route element={<PrivateRouteOwner />}>
-          <Route path='/history-list-owner' element={<HistorylistOwner /> } />
-          <Route path='/transactions' element={<TransactionList /> } />
-          <Route path='/addProperty' element={<AddProperties /> } />
-        </Route>
-      </Routes>
+      {isLoading ? null : (
+      <>
+        <NavbarCustom search={search} refetch={PropertiesRefecth} setSearch={setSearch} />
+        <Routes>
+          <Route path='/' element={<HomeTenant Price={Price} Bedroom={Bedroom} Bathroom={Bathroom} setSearch={setSearch} data={Properties} refetch={PropertiesRefecth} type={Type} setBtnType={setBtnType} setBedroom={setBedroom} setBathroom={setBathroom} setPrice={setPrice} />} />
+          <Route path='/details/:id' element={<BookingDetailPage /> } />
+          <Route path='/property-detail/:id' element={<PropertyDetail /> } />
+          <Route path='/profile' element={<ProfilePage /> } />
+          <Route path='/bookinglist' element={<Bookinglist /> } />   
+          <Route element={<PrivateRouteOwner />}>
+            <Route path='/history-list-owner' element={<HistorylistOwner /> } />
+            <Route path='/transactions' element={<TransactionList /> } />
+            <Route path='/addProperty' element={<AddProperties /> } />
+          </Route>
+        </Routes>
+      </>
+      )}
     </>
   );
 }
