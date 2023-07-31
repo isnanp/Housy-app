@@ -78,7 +78,7 @@ export default function AddProperties() {
 
         alert("Add ticket Success!");
 
-      console.log("Add ticket Success : ", response);
+      console.log("Add Property Success : ", response);
 
      
       navigate("/transactions")
@@ -144,6 +144,7 @@ export default function AddProperties() {
             name="Type"
             onChange={handleChange}
             value={Type}>
+                    <option value="" >Pilih disini</option>
                     <option value="Days"> Days </option>
                     <option value="Months"> Months </option>
                     <option value="Years"> Years </option>
@@ -190,6 +191,7 @@ export default function AddProperties() {
             name="Bedroom"
             onChange={handleChange}
             value={Bedroom}>
+                    <option value="" >Pilih disini</option>
                     <option value="1"> 1 </option>
                     <option value="2"> 2 </option>
                     <option value="3"> 3 </option>
@@ -203,6 +205,7 @@ export default function AddProperties() {
             name="Bathroom"
             onChange={handleChange}
             value={Bathroom}>
+                    <option value="" >Pilih disini</option>
                     <option value="1"> 1 </option>
                     <option value="2"> 2 </option>
                     <option value="3"> 3 </option>

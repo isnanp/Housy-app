@@ -48,7 +48,6 @@ export default function TimeDuration(props) {
       formData.set("duration", duration);
       formData.set("price", price);
       const response = await API.post("/transaction", formData)
-      alert("Transaksi Berhasil Dibuat!");
       console.log("ini login", response.data.data);
       navigate(`/details/${response.data.data.id}`);
 
