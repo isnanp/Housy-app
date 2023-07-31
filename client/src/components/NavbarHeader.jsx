@@ -70,7 +70,7 @@ export default function NavbarCustom(props) {
                                     state.user.image
                                 }
                                 alt = "pp" />}>
-                                <Link to="/profile" style={{textDecoration:"none"}}>
+                                <Link to="/profile/owner" style={{textDecoration:"none"}}>
                                     <Dropdown.Item href="#/action-2"> <img src={IconUserDD} alt="bill" style={{height:"1rem", paddingRight:"3px"}} /> Profile</Dropdown.Item>
                                 </Link>
                                 <Link to="addProperty" style={{textDecoration:"none"}}>
@@ -110,7 +110,7 @@ export default function NavbarCustom(props) {
                                     state.user.image
                                 }
                                 alt = "pp" />}>
-                                <Link to="/profile" style={{textDecoration:"none"}}>
+                                <Link to="/profile/tenant" style={{textDecoration:"none"}}>
                                     <Dropdown.Item href="#/action-2"> <img src={IconUserDD} alt="bill" style={{height:"1rem", paddingRight:"3px"}} /> Profile</Dropdown.Item>
                                 </Link>
                                 <Link to="/bookinglist" style={{textDecoration:"none"}}>

@@ -13,7 +13,7 @@ import AddProperties from './pages/owner/AddProperties'
 import Bookinglist from './pages/tenant/BookingList'
 import { useQuery } from 'react-query'
 import HistorylistOwner from './pages/owner/History'
-import { PrivateRouteOwner } from './components/privateRoute'
+import { PrivateRoute, PrivateRouteOwner } from './components/privateRoute'
 
 
 export default function App() {
@@ -93,13 +93,16 @@ export default function App() {
         <NavbarCustom search={search} refetch={PropertiesRefecth} setSearch={setSearch} />
         <Routes>
           <Route path='/' element={<HomeTenant Price={Price} Bedroom={Bedroom} Bathroom={Bathroom} setSearch={setSearch} data={Properties} refetch={PropertiesRefecth} type={Type} setBtnType={setBtnType} setBedroom={setBedroom} setBathroom={setBathroom} setPrice={setPrice} />} />
-          <Route path='/details/:id' element={<BookingDetailPage /> } />
           <Route path='/property-detail/:id' element={<PropertyDetail /> } />
-          <Route path='/profile' element={<ProfilePage /> } />
-          <Route path='/bookinglist' element={<Bookinglist /> } />   
+          <Route element={<PrivateRoute /> } >
+            <Route path='/details/:id' element={<BookingDetailPage /> } />
+            <Route path='/profile/tenant' element={<ProfilePage /> } />
+            <Route path='/bookinglist' element={<Bookinglist /> } />   
+          </ Route>
           <Route element={<PrivateRouteOwner />}>
             <Route path='/history-list-owner' element={<HistorylistOwner /> } />
             <Route path='/transactions' element={<TransactionList /> } />
+            <Route path='/profile/owner' element={<ProfilePage /> } />
             <Route path='/addProperty' element={<AddProperties /> } />
           </Route>
         </Routes>
