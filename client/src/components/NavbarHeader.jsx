@@ -125,7 +125,8 @@ export default function NavbarCustom(props) {
                         </>
                             )
                             : (
-                                <> < Form > <InputGroup className="mb-3">
+                                <> < Form onSubmit={() => props.refetch()}> 
+                                <InputGroup className="mb-3">
                                     <Form.Control
                                     onChange={handleChange}
                                         id="search"
@@ -133,11 +134,10 @@ export default function NavbarCustom(props) {
                                         placeholder="City"
                                         aria-label="Recipient's username"
                                         aria-describedby="basic-addon2"/>
-                                    <Button onClick={() => props.refetch()} variant="outline-secondary" id="button-addon2">
+                                    <Button type="submit"  variant="outline-secondary" id="button-addon2">
                                         Search
                                     </Button>
                                 </InputGroup>
-
                             </Form>
                             <div>
                                 <Button
