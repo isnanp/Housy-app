@@ -22,7 +22,7 @@ export default function Filter(props) {
     return (
         <>
 
-                <Form className="border-end pe-3">
+                <Form onSubmit={() => props.refetch()} className="border-end pe-3">
                 <h4 className="">Type of Rent</h4>
                     <ToggleButtonGroup
                         type="radio"
@@ -226,14 +226,14 @@ export default function Filter(props) {
                         Less than IDR.
                         </Form.Label>
                         <Col>
-                        <Form.Control id="price" name="price" onChange={OnChangeHandler} value={props.Price} type="text" placeholder="900000" className="bg" />
+                        <Form.Control required id="price" name="price" onChange={OnChangeHandler} value={props.Price} type="text" placeholder="900000" className="bg" />
                         </Col>
                     </Form.Group>
                     <div className="d-flex justify-content-between mt-3">
                         <Button onClick={() => { ResetFilter()}}>
                             Reset Filter
                         </Button>
-                        <Button onClick={() => props.refetch()}>
+                        <Button type="submit">
                             Apply Filter
                         </Button>
                     </div>
