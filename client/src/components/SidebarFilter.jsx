@@ -22,7 +22,7 @@ export default function Filter(props) {
     return (
         <>
 
-                <Form onSubmit={() => props.refetch()} className="border-end pe-3">
+                <Form className="border-end pe-3">
                 <h4 className="">Type of Rent</h4>
                     <ToggleButtonGroup
                         type="radio"
@@ -233,7 +233,7 @@ export default function Filter(props) {
                         <Button onClick={() => { ResetFilter()}}>
                             Reset Filter
                         </Button>
-                        <Button type="submit">
+                        <Button onClick={() => props.refetch()}>
                             Apply Filter
                         </Button>
                     </div>
